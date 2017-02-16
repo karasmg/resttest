@@ -1,0 +1,39 @@
+<div>
+    <h1>Каталог фильмов: добавление фильма</h1>
+
+    <p>{{ message}}</p>
+    <form role="form" name="myForm">
+        <div class= "form-group" ng-class="{error: myForm.title.$invalid}">
+            <label> Название </label>
+            <div>
+                <input name="title" ng-model="film.title" type= "text" class= "form-control" placeholder="Название фильма" required/>
+                <span ng-show="myForm.title.$dirty && myForm.title.$invalid" class="help-inline">Название обязательно</span>
+            </div>
+        </div>
+        <div class= "form-group">
+            <label> Описание </label>
+            <div>
+                <textarea name="storyline" ng-model="film.storyline" class= "form-control" placeholder= "Описание фильма"></textarea>
+            </div>
+        </div>
+        <div class= "form-group" ng-class="{error: myForm.director.$invalid}">
+            <label> Режиссер </label>
+            <div>
+                <input name="director" ng-model="film.director" type= "text" class= "form-control" placeholder="Режиссер" required/>
+                <!--<span ng-show="myForm.director.$dirty && myForm.director.$invalid" class="help-inline">Режиссер обязателен</span>-->
+            </div>
+        </div>
+        <div class= "form-group" ng-class="{error: myForm.year.$invalid}">
+            <label> Год </label>
+            <div>
+                <input name="year" ng-model="film.year" type= "text" class= "form-control" placeholder="Год год выпуска" required/>
+                <span ng-show="myForm.year.$dirty && myForm.year.$invalid" class="help-inline">Год обязателен</span>
+            </div>
+        </div>
+
+        <a href="#/film/index" class="btn btn-default">Cancel</a>
+        <button ng-click="createFilm(film);"
+                ng-disabled="myForm.$invalid"
+                type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
