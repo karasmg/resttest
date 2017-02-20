@@ -1,5 +1,6 @@
 'use strict';
-yii2AngApp_film.config(['$routeProvider', function($routeProvider) {
+yii2AngApp_film.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
     $routeProvider
         .when('/film/index', {
             templateUrl: 'views/film/index.html',
@@ -35,7 +36,7 @@ yii2AngApp_film.config(['$routeProvider', function($routeProvider) {
 
 yii2AngApp_film.controller('index', ['$scope', '$http', 'services',
         function($scope,$http,services) {
-            $scope.message = 'Everyone come and see how good I look!';
+            $scope.message = 'Everyone come and see how good I look1!';
             services.getFilms().then(function(data){
                 $scope.films = data.data;
             });

@@ -1,5 +1,7 @@
 'use strict';
-yii2AngApp_site.config(['$routeProvider', function($routeProvider) {
+yii2AngApp_site.config(['$locationProvider', '$routeProvider', function($locationProvider,$routeProvider) {
+    alert('frgt');
+      //  $locationProvider.hashPrefix('!');
         $routeProvider
             .when('/site/index', {
                 templateUrl: 'views/site/index.html',
@@ -16,16 +18,26 @@ yii2AngApp_site.config(['$routeProvider', function($routeProvider) {
             .otherwise({
                 redirectTo: '/site/index'
             });
+        $locationProvider.html5Mode(true);
     }])
-    .controller('index', ['$scope', '$http', function($scope,$http) {
+    .controller('index', ['$scope', '$location', '$routeParams', '$http', function($scope, $location, $routeParams, $http) {
         // Сообщение для отображения представлением
         $scope.message = 'Вы читаете главную страницу приложения. ';
+        $scope.$route = $route;
+        $scope.$location = $location;
+        $scope.$routeParams = $routeParams;
     }])
-    .controller('about', ['$scope', '$http', function($scope,$http) {
+    .controller('about', ['$scope', '$location', '$routeParams', '$http', function($scope, $location, $routeParams, $http) {
         // Сообщение для отображения представлением
         $scope.message = 'Это страница с информацией о приложении.';
+        $scope.$route = $route;
+        $scope.$location = $location;
+        $scope.$routeParams = $routeParams;
     }])
-    .controller('contact', ['$scope', '$http', function($scope,$http) {
+    .controller('contact', ['$scope', '$location', '$routeParams', '$http', function($scope, $location, $routeParams, $http) {
         // Сообщение для отображения представлением
         $scope.message = 'Пишите письма. Мы будем рады!.';
+        $scope.$route = $route;
+        $scope.$location = $location;
+        $scope.$routeParams = $routeParams;
     }]);
