@@ -1,17 +1,15 @@
 'use strict';
 // Ссылка на серверную часть приложения
-var serviceBase = 'http://plut.local/';
+var serviceBase = 'http://yii2-ang.local/';
 // Основной модуль приложения и его компоненты
 var yii2AngApp = angular.module('yii2AngApp', [
     'ngRoute',
-    'site',
-    'film'
+    'yii2AngApp.site',
+    'yii2AngApp.film'
 ]);
-// рабочий модуль
-var yii2AngApp_site = angular.module('site', ['ngRoute']);
-var yii2AngApp_film = angular.module('film', ['ngRoute']);
 
-yii2AngApp.config(['$routeProvider', function($routeProvider) {
+yii2AngApp.config(['$locationProvider','$routeProvider', function($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
     // Маршрут по-умолчанию
     $routeProvider.otherwise({redirectTo: '/site/index'});
 }]);

@@ -1,10 +1,11 @@
 'use strict';
-yii2AngApp_film.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
+var yii2AngApp_film = angular.module('yii2AngApp.film', ['ngRoute']);
+
+yii2AngApp_film.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/film/index', {
             templateUrl: 'views/film/index.html',
-            controller: 'index'
+            controller: 'filmindex'
         })
         .when('/film/create', {
             templateUrl: 'views/film/create.html',
@@ -34,9 +35,9 @@ yii2AngApp_film.config(['$locationProvider', '$routeProvider', function($locatio
         });
 }]);
 
-yii2AngApp_film.controller('index', ['$scope', '$http', 'services',
+yii2AngApp_film.controller('filmindex', ['$scope', '$http', 'services',
         function($scope,$http,services) {
-            $scope.message = 'Everyone come and see how good I look1!';
+            $scope.message = 'Everyone come and see how good I look!';
             services.getFilms().then(function(data){
                 $scope.films = data.data;
             });
@@ -49,14 +50,14 @@ yii2AngApp_film.controller('index', ['$scope', '$http', 'services',
         }])
     .controller('create', ['$scope', '$http', 'services','$location','film',
         function($scope,$http,services,$location,film) {
-            $scope.message = 'Look! I am an about page.';
+            $scope.message = 'Look! I am a craete page.';
             $scope.createFilm = function(film) {
                 var results = services.createFilm(film);
             }
         }])
     .controller('update', ['$scope', '$http', '$routeParams', 'services','$location','film',
         function($scope,$http,$routeParams,services,$location,film) {
-            $scope.message = 'Contact us! JK. This is just a demo.';
+            $scope.message = 'Contact us! JK. This is update page';
             var original = film.data;
             $scope.film = angular.copy(original);
             $scope.isClean = function() {
