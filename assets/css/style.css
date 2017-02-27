@@ -1,0 +1,7 @@
+.context-menu{
+    position: absolute;
+    width: 200px;
+    line-height: 0.5;
+    border: lightskyblue solid 1px;
+    background: cornsilk;
+}
