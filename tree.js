@@ -25,6 +25,9 @@ yii2AngApp_tree.directive('ngNode', ['$document', '$compile', function($document
         element.on('contextmenu', function(event) {
             event.preventDefault();
             event.stopPropagation();
+            //Блокируем создание многих высплывающих окон
+            if(document.getElementsByClassName('dropdown-menu').length !== 0)
+                return false;
             var coord = {
                 top: element[0].offsetTop,
                 left: element[0].offsetLeft,
@@ -34,8 +37,8 @@ yii2AngApp_tree.directive('ngNode', ['$document', '$compile', function($document
             //Выводим контекстное меню
             var context_menu = '<ul class="dropdown-menu" style = "">'+
                                     '<li><a href="javascript:void(0)" ng-click="add_node()">Добавить</a></li>'+
-                                    '<li><a href="javascript:void(0)">Переместить</a></li>'+
-                                    '<li><a href="javascript:void(0)">Удалить</a></li>'+
+                                    '<li><a href="javascript:void(0)" ng-click="move_node()">Переместить</a></li>'+
+                                    '<li><a href="javascript:void(0)" ng-click="del_node()">Удалить</a></li>'+
                                 '</ul>';
             context_menu = angular.element(context_menu);
             context_menu.css({
@@ -45,13 +48,29 @@ yii2AngApp_tree.directive('ngNode', ['$document', '$compile', function($document
             });
             element.append(context_menu);
             $compile(context_menu)(scope);
-            $document.find('body').on('click', function(event){
-                console.log('body_click');
-                if (closest( event.target, "dropdown-menu").nodeName !== undefined) return;
+            var menu_remove = function(){
                 context_menu.remove();
                 event.stopPropagation();
-            });
-
+                $document.off('click', menu_click);
+            };
+            var menu_click = function(event){
+                console.log('body_click');
+                if (closest( event.target, "dropdown-menu").nodeName !== undefined) return;
+                menu_remove();
+            }
+            $document.on('click', menu_click);
+            scope.add_node = function(){
+                console.log('add_node');
+                menu_remove();
+            }
+            scope.del_node = function(){
+                console.log('del_node');
+                menu_remove();
+            }
+            scope.move_node = function(){
+                console.log('move_node');
+                menu_remove();
+            }
         });
     };
 }]);
@@ -71,7 +90,7 @@ yii2AngApp_tree.directive('ngRightClick', function($parse) {
 
 
 function closest(e, className) {
-    if (e.nodeName == "BODY") {
+    if (e.nodeName == "HTML") {
         return {};
     } else if (e.className.indexOf(className) !== -1) {
         return e;
