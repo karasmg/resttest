@@ -9,7 +9,7 @@
                     <div class="node" id="0">
                         <div class="dropdown">
                             <i class="fa fa-plus-square"></i>
-                            <span class="dropdown-toggle" ng-right-click="handleEvent($event)">Узел{{type}}</span>
+                            <div class="node" ng-node="handleEvent($event)">Родительский узел</div>
                         </div>
                     </div>
                 </div>
@@ -18,14 +18,8 @@
     </div>
 </div>
 
-<ul class="nav nav-pills nav-stacked context-menu">
-    <li class="">
-        <a href="#">Добавить</a>
-    </li>
-    <li class="">
-        <a href="#">Переместить</a>
-    </li>
-    <li class="">
-        <a href="#">Удалить</a>
-    </li>
+<ul class="dropdown-menu" style = "display: block">
+    <li><a href="javascript:void(0)" ng-click="add_node()">Добавить</a></li>
+    <li><a href="javascript:void(0)">Переместить</a></li>
+    <li><a href="javascript:void(0)">Удалить</a></li>
 </ul>
