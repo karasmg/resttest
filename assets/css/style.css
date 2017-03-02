@@ -5,3 +5,43 @@
     border: lightskyblue solid 1px;
     background: cornsilk;
 }
+.treeview, .treeview ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+    overflow: hidden;
+}
+
+.treeview li
+{
+    position: relative;
+    padding: 0 0 0 20px;
+    line-height: 20px;
+}
+
+.treeview li .expanded
+{
+    padding: 1px 10px;
+    background-image: url("img/folder.png");
+    background-repeat: no-repeat;
+}
+
+.treeview li .collapsed
+{
+    padding: 1px 10px;
+    background-image: url("img/folder-closed.png");
+    background-repeat: no-repeat;
+}
+
+.treeview li .normal
+{
+    padding: 1px 10px;
+    background-image: url("img/file.png");
+    background-repeat: no-repeat;
+}
+
+.treeview li i, .treeview li span
+{
+    cursor: pointer;
+}
