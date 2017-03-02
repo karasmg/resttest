@@ -45,6 +45,19 @@ yii2AngApp_tree.controller('treeindex', ['$scope', '$http',
 
         $scope.nodes = [
             {
+                n_id: 0,
+                n_parent: 0,
+                n_text: 'Родительский узел'
+            },
+            {
+                n_id: 1,
+                n_parent: 0,
+                n_text: 'узел 1'
+            }
+        ]
+
+        $scope.nodes = [
+            {
                 id: 0,
                 text: "Родительский узел",
                 nodes: [
