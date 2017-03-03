@@ -2,42 +2,23 @@
     <h1>Дерево элементов</h1>
 
     <p>{{ message }}</p>
+
     <div class="section">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="node" id="0">
-                        <div class="dropdown">
-                            <i class="fa fa-plus-square"></i>
-                            <div class="node" ng-node ng-repeat="item in node_0">{{item.text}}</div>
-                            <div>
-                                <ul my-treeview>
-                                    <li ng-repeat="item in items" my-treeview-childs="item.childrens">
-                                        <span ng-click="say(item.id)" ng-class="{ bold: item.id % 2}">{{item.id}} {{item.name}}</span></li>
-                                </ul>
-                            </div>
-                            <ul>
-                                <li ng-repeat="node in nodes" ng-node ng-include="'node-tree'"></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <ul>
+                        <li id="0" ng-repeat="node in nodes" ng-node ng-include="'node-tree'"></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/ng-template" id="category-tree">
-    {{ category.title }}
-    <ul ng-if="category.categories">
-        <li ng-repeat="category in category.categories" ng-node ng-include="'category-tree'">
-        </li>
-    </ul>
-</script>
-
 <script type="text/ng-template" id="node-tree">
     {{node.id}}__{{ node.text }}
     <ul ng-if="node.nodes">
-        <li id="{{node.id}}" ng-repeat="node in node.nodes" ng-node ng-include="'node-tree'"></li>
+        <li id="{{node.id}}" parent="{{node.parent}}" ng-repeat="node in node.nodes" ng-node ng-include="'node-tree'"></li>
     </ul>
 </script>
