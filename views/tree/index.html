@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <ul>
+                    <ul class="treeview" >
                         <li id="0" ng-repeat="node in nodes" ng-node ng-include="'node-tree'"></li>
                     </ul>
                 </div>
@@ -17,7 +17,7 @@
 </div>
 
 <script type="text/ng-template" id="node-tree">
-    {{node.id}}__{{ node.text }}
+    <div draggable>{{node.id}}__{{ node.text }}</div>
     <ul ng-if="node.nodes">
         <li id="{{node.id}}" parent="{{node.parent}}" ng-repeat="node in node.nodes" ng-node ng-include="'node-tree'"></li>
     </ul>

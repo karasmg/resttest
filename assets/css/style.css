@@ -15,6 +15,7 @@
 
 .treeview li
 {
+    list-style-type: none; /* Убираем маркеры */
     position: relative;
     padding: 0 0 0 20px;
     line-height: 20px;
@@ -22,6 +23,7 @@
 
 .treeview li .expanded
 {
+    list-style-type: none; /* Убираем маркеры */
     padding: 1px 10px;
     background-image: url("img/folder.png");
     background-repeat: no-repeat;
@@ -29,6 +31,7 @@
 
 .treeview li .collapsed
 {
+    list-style-type: none; /* Убираем маркеры */
     padding: 1px 10px;
     background-image: url("img/folder-closed.png");
     background-repeat: no-repeat;
@@ -36,6 +39,7 @@
 
 .treeview li .normal
 {
+    list-style-type: none; /* Убираем маркеры */
     padding: 1px 10px;
     background-image: url("img/file.png");
     background-repeat: no-repeat;
@@ -43,5 +47,7 @@
 
 .treeview li i, .treeview li span
 {
+    list-style-type: none; /* Убираем маркеры */
     cursor: pointer;
 }
+
